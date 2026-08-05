@@ -70,6 +70,7 @@ Reportes generados hasta ahora (ver `reports/`):
 10. `10_perfilado_columnas_cambio_esquema.md` — perfilado real de columnas por periodo; detección de cambio de esquema (PRESUNTO→TIPO_DEFUN en 2022)
 11. `11_codigos_decodificados_urls_corregidas.md` — códigos reales decodificados (PRESUNTO=Suicidio, EDAD, EDAD_AGRU) y corrección de URLs 2022-2024
 12. `12_tipo_defun_confirmado_armonizacion.md` — TIPO_DEFUN confirmado (2022-2024) y tabla de armonización con PRESUNTO (código 4 cambia de significado)
+13. `13_diagnostico_distribucion_filas_sospechosa.md` — celda de diagnóstico agregada por distribución sospechosa de filas por año dentro de los archivos consolidados
 
 ## Cómo contribuir datos crudos
 
