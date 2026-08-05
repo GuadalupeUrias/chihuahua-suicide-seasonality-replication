@@ -55,7 +55,7 @@ chihuahua-suicide-seasonality-replication/
 
 ## Estado actual del proyecto
 
-🟡 **Etapa 1 — Diagnóstico inicial: prácticamente completa para mortalidad** (corrección de tipos de dato recién aplicada, pendiente confirmar guardado exitoso; población y temperatura pendientes)
+🟢 **Etapa 1 — Diagnóstico inicial: COMPLETA para la fuente de mortalidad** (17/17 años 2008-2024 cargados sin error; población y temperatura pendientes)
 🔵 **Etapa 2 — Limpieza/Filtrado: siguiente paso**
 
 Reportes generados hasta ahora (ver `reports/`):
@@ -75,6 +75,7 @@ Reportes generados hasta ahora (ver `reports/`):
 14. `14_bug_carga_archivos_consolidados_corregido.md` — bug real encontrado y corregido: los .zip consolidados traen un .dbf por año, no uno solo con todos los años
 15. `15_correccion_confirmada_mortalidad_lista.md` — corrección confirmada con datos reales; mortalidad nacional 2005-2024 lista para filtrado
 16. `16_correccion_tipos_dato_parquet.md` — corrección de tipos de dato inconsistentes entre años (numérico↔texto) que bloqueaban el guardado en parquet
+17. `17_cierre_etapa1_mortalidad_exitosa.md` — cierre: mortalidad nacional 2008-2024 cargada exitosamente, 17/17 años sin error
 
 ## Cómo contribuir datos crudos
 
