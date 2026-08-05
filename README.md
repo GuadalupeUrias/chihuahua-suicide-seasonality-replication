@@ -68,6 +68,7 @@ Reportes generados hasta ahora (ver `reports/`):
 8. `08_error_permisos_git_push.md` — solución al error de permisos (403) al hacer git push con la cuenta incorrecta
 9. `09_correccion_bug_sintaxis_notebook.md` — corrección de bug de sintaxis en el notebook de descarga (comillas mal escapadas)
 10. `10_perfilado_columnas_cambio_esquema.md` — perfilado real de columnas por periodo; detección de cambio de esquema (PRESUNTO→TIPO_DEFUN en 2022)
+11. `11_codigos_decodificados_urls_corregidas.md` — códigos reales decodificados (PRESUNTO=Suicidio, EDAD, EDAD_AGRU) y corrección de URLs 2022-2024
 
 ## Cómo contribuir datos crudos
 
