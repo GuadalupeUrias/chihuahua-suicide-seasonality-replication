@@ -53,7 +53,25 @@ Además, desde 2022 INEGI agrega bastantes variables nuevas que **no existían a
 Como se documentó en `docs/DATA_SOURCES.md`, usaremos:
 - `PRESUNTO` (2005-2021) / `TIPO_DEFUN` (2022-2024) — para verificar que el filtro por `CAUSA_DEF` en X60-X84 identifique la misma cantidad de "presuntos suicidios" que este campo directo.
 
-## Pendiente antes de la limpieza (Etapa 2)
+## ⚠️ Hallazgo adicional: cambio de tipo de almacenamiento (numérico ↔ texto) entre años
+
+Al intentar guardar los datos combinados en formato parquet, se detectó que varios campos de código/categoría están almacenados como **texto en algunos años** y como **número en otros años**, para el mismo campo lógico. Ejemplos confirmados comparando los diccionarios de datos 2018 vs 2022:
+
+| Variable | Tipo en 2018 (`DEFUN18.dbf`) | Tipo en 2022 (`DEFUN22.dbf`) |
+|---|---|---|
+| `LENGUA` | N (numérico) | C (texto) |
+| `NACIONALID` | N (numérico) | C (texto) |
+| `NECROPSIA` | N (numérico) | C (texto) |
+| `OCUPACION` | N(2) — 2 dígitos | C(3) — 3 dígitos, con ceros a la izquierda |
+| `AFROMEX`, `CONINDIG` | *(no existían en 2018)* | C (texto) |
+
+Esto no es un error de nuestra parte: es un cambio real en cómo INEGI almacena estos campos en sus archivos .dbf a lo largo del tiempo. Al concatenar años con tipos distintos para la misma columna, pandas la deja como tipo mixto (`object`), lo cual rompe la exportación a parquet.
+
+**Solución aplicada:** se armonizan explícitamente los tipos de dato al cargar cada archivo, antes de concatenar:
+- Un conjunto fijo de columnas (`NUMERIC_COLUMNS` en el notebook) se trata siempre como numérico — mediciones, fechas y códigos de un solo dígito sin relleno de ceros.
+- Todo lo demás se trata como texto (categorías/claves), y para las columnas de clave geográfica o de causa que sabemos tienen un ancho fijo documentado (`CODE_COLUMN_WIDTHS`), se rellenan con ceros a la izquierda los valores puramente numéricos (sin tocar valores ya alfanuméricos, como los códigos CIE-10 tipo "X70").
+
+Esta armonización es una decisión de la Etapa de limpieza que ya quedó resuelta a nivel de carga; en la Etapa 2 formal se revisará si haría falta un mapeo más fino por variable (ej. decodificar `OCUPACION` sabiendo que cambió de 2 a 3 dígitos).
 
 1. **Diccionario de datos (codebook) de al menos un archivo de cada periodo** (2005-2009, 2010-2014, 2015-2019, 2022) — para decodificar los valores numéricos de `SEXO`, `ENT_RESID` (confirmar que Chihuahua = 08), `EDAD`/`EDAD_AGRU`, `PRESUNTO`/`TIPO_DEFUN` (¿qué código = suicidio?), `ESCOLARIDA`, `EDO_CIVIL`, `AREA_UR`.
 2. Confirmar si `EDAD_AGRU` ya trae una agrupación utilizable o si hay que construir los 7 grupos del artículo desde `EDAD` (variable numérica/codificada).
