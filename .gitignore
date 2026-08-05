@@ -1,8 +1,10 @@
-# Datos crudos sensibles/pesados: normalmente NO se versionan datasets grandes en git.
-# Descomenta estas líneas si decides NO subir los datos crudos al repositorio
-# (recomendado si los archivos son grandes o si prefieres mantenerlos solo localmente).
+# Datos crudos: NO se suben al repositorio (son pesados y de fuente pública fácilmente
+# re-descargable siguiendo docs/DATA_SOURCES.md — no tiene sentido versionarlos en git).
 data/raw/*
 !data/raw/.gitkeep
+
+# Datos intermedios (salidas del notebook de descarga, ej. parquet por año): tampoco se suben,
+# se regeneran corriendo notebooks/01_download_extract_mortalidad.ipynb.
 data/interim/*
 !data/interim/.gitkeep
 

@@ -64,6 +64,7 @@ Reportes generados hasta ahora (ver `reports/`):
 4. `04_correccion_fuente_microdatos.md` — corrección: usar portal de microdatos, no el cubo OLAP
 5. `05_notebook_descarga_git.md` — notebook de descarga automatizada e instrucciones de git
 6. `06_estructura_archivos_inegi.md` — corrección de la estructura real de archivos INEGI (consolidados por periodo) y adelanto de años de extensión
+7. `07_urls_confirmadas_gitignore.md` — URLs de descarga confirmadas, .gitignore para datos crudos, instrucciones de git en archivo dedicado
 
 ## Cómo contribuir datos crudos
 
@@ -71,32 +72,7 @@ Este proyecto requiere datos descargados manualmente de fuentes gubernamentales 
 
 ## Instrucciones de git
 
-Este repositorio se generó fuera de git (en el entorno de Claude) y se entrega como .zip en cada avance. Así lo integras a tu repo remoto vacío:
-
-### Primera vez (repo local aún no existe)
-```bash
-git clone <URL-de-tu-repo-remoto> chihuahua-suicide-seasonality-replication
-cd chihuahua-suicide-seasonality-replication
-# Descomprime el .zip que te compartí y copia TODO su contenido aquí (sobrescribiendo si aplica)
-git add .
-git commit -m "Etapa 1: estructura del proyecto, fuentes de datos y notebook de descarga"
-git push origin main   # usa 'master' si tu rama por defecto se llama así
-```
-
-### Avances siguientes (ya tienes el repo local)
-```bash
-cd chihuahua-suicide-seasonality-replication
-# Descomprime el nuevo .zip y copia/sobrescribe los archivos actualizados
-git status                 # revisa qué cambió antes de subir
-git add .
-git commit -m "Descripción breve del avance (ej. Etapa 2: limpieza de microdatos)"
-git push origin main
-```
-
-### Recomendaciones
-- Haz un commit por cada etapa completada (coincide con los reportes 📋 en `reports/`), no uno solo gigante al final — así el historial documenta el proceso, que es justo el punto de un ejercicio de reproducibilidad.
-- Si vas a subir los datos crudos (`data/raw/`) al repo, ten cuidado con el tamaño — GitHub bloquea archivos individuales mayores a 100 MB. Si algún archivo de INEGI pesa más, actívalo en `.gitignore` (ya está la línea comentada, lista para usar) y en su lugar documenta en `docs/DATA_SOURCES.md` dónde conseguirlo.
-- Revisa `git log --oneline` de vez en cuando para verificar que el historial cuente la historia del proyecto tal como fue avanzando.
+Ver **`GIT_INSTRUCTIONS.md`** (raíz del repo) — incluye configuración de usuario, autenticación, primer push, avances siguientes y manejo de `data/raw/` (ignorado por `.gitignore`, ya que son archivos públicos, pesados y re-descargables).
 
 ## Cita
 
