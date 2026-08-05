@@ -1,0 +1,23 @@
+# Datos crudos sensibles/pesados: normalmente NO se versionan datasets grandes en git.
+# Descomenta estas líneas si decides NO subir los datos crudos al repositorio
+# (recomendado si los archivos son grandes o si prefieres mantenerlos solo localmente).
+data/raw/*
+!data/raw/.gitkeep
+# data/interim/*
+# !data/interim/.gitkeep
+
+# Entornos y cachés de Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editores
+.vscode/
+.idea/
