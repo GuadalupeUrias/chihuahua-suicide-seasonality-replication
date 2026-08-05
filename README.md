@@ -65,6 +65,8 @@ Reportes generados hasta ahora (ver `reports/`):
 5. `05_notebook_descarga_git.md` — notebook de descarga automatizada e instrucciones de git
 6. `06_estructura_archivos_inegi.md` — corrección de la estructura real de archivos INEGI (consolidados por periodo) y adelanto de años de extensión
 7. `07_urls_confirmadas_gitignore.md` — URLs de descarga confirmadas, .gitignore para datos crudos, instrucciones de git en archivo dedicado
+8. `08_error_permisos_git_push.md` — solución al error de permisos (403) al hacer git push con la cuenta incorrecta
+9. `09_correccion_bug_sintaxis_notebook.md` — corrección de bug de sintaxis en el notebook de descarga (comillas mal escapadas)
 
 ## Cómo contribuir datos crudos
 
