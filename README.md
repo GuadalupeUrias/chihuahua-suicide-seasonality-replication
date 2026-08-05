@@ -55,7 +55,8 @@ chihuahua-suicide-seasonality-replication/
 
 ## Estado actual del proyecto
 
-🔵 **Etapa 1 — Diagnóstico inicial: EN CURSO**
+🟢 **Etapa 1 — Diagnóstico inicial: COMPLETA para la fuente de mortalidad** (población y temperatura pendientes)
+🔵 **Etapa 2 — Limpieza/Filtrado: siguiente paso**
 
 Reportes generados hasta ahora (ver `reports/`):
 1. `01_diagnostico_fuentes.md` — identificación inicial de las 3 fuentes de datos
@@ -72,6 +73,7 @@ Reportes generados hasta ahora (ver `reports/`):
 12. `12_tipo_defun_confirmado_armonizacion.md` — TIPO_DEFUN confirmado (2022-2024) y tabla de armonización con PRESUNTO (código 4 cambia de significado)
 13. `13_diagnostico_distribucion_filas_sospechosa.md` — celda de diagnóstico agregada por distribución sospechosa de filas por año dentro de los archivos consolidados
 14. `14_bug_carga_archivos_consolidados_corregido.md` — bug real encontrado y corregido: los .zip consolidados traen un .dbf por año, no uno solo con todos los años
+15. `15_correccion_confirmada_mortalidad_lista.md` — corrección confirmada con datos reales; mortalidad nacional 2005-2024 lista para filtrado
 
 ## Cómo contribuir datos crudos
 
