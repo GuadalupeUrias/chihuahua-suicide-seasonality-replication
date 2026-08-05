@@ -158,3 +158,39 @@ Clave de 2 dígitos según catálogo geoestadístico de INEGI (`CATEMLDE18.dbf`,
 
 El documento compartido es de 2018 (`DEFUN18.dbf`), por lo que describe `PRESUNTO`, no `TIPO_DEFUN` (que aparece desde 2022). Necesitamos el mismo tipo de documento pero de un año ≥2022 para confirmar si `TIPO_DEFUN` usa los mismos códigos (1=Accidente, 2=Homicidio, 3=Suicidio...) o si INEGI los reordenó/amplió al renombrar el campo.
 
+---
+
+## ✅ ACTUALIZACIÓN — Códigos de `TIPO_DEFUN` confirmados (fuente: INEGI, "Estadísticas de defunciones registradas — Descripción de la base de datos" 2022, DEFUN22.dbf)
+
+### 🎯 `TIPO_DEFUN` — equivalente de `PRESUNTO` desde 2022
+
+| Código | Significado |
+|---|---|
+| 1 | Accidente |
+| 2 | Homicidio (Agresión) |
+| **3** | **Suicidio (Lesión autoinfligida)** |
+| 4 | Enfermedad (Muerte natural) |
+| 5 | Intervención legal |
+| 9 | Se ignora |
+
+**Buena noticia:** el código **3 = Suicidio en ambos sistemas** (`PRESUNTO` 2005-2021 y `TIPO_DEFUN` 2022-2024). Nuestro filtro de control cruzado (`== 3`) funciona igual en todo el rango 2008-2024 sin necesidad de un mapeo condicional para ese valor específico.
+
+### ⚠️ Pero OJO: el resto de los códigos SÍ cambiaron de significado — tabla de armonización obligatoria
+
+| Código | `PRESUNTO` (2005-2021) | `TIPO_DEFUN` (2022-2024) |
+|---|---|---|
+| 1 | Accidente | Accidente |
+| 2 | Homicidio | Homicidio (Agresión) |
+| **3** | **Suicidio** | **Suicidio (Lesión autoinfligida)** |
+| **4** | **Se ignora** | **Enfermedad (Muerte natural)** ⚠️ |
+| 5 | Operaciones legales y de guerra | Intervención legal |
+| 8 | No aplica para muerte natural | *(no existe este código)* |
+| 9 | *(no existe este código)* | Se ignora |
+
+**Esto es crítico para el script de limpieza:** si alguien reutilizara el código sin mapear explícitamente (ej. un filtro genérico `campo in [1,2,3,4,5]` esperando que 4 signifique lo mismo en todos los años), el resultado sería incorrecto para 2022-2024. La Etapa 2 debe usar un mapeo explícito por periodo, no asumir que los códigos numéricos son intercambiables entre `PRESUNTO` y `TIPO_DEFUN` salvo el 3.
+
+Nota adicional: `TIPO_DEFUN` parece aplicar a **todas** las defunciones (incluye código 4 = muerte natural), mientras que `PRESUNTO` parece estar pensado solo para el apartado de defunciones accidentales y violentas (de ahí el código 8 "No aplica para muerte natural"). Esto sugiere que la variable amplió su alcance, no solo su nombre — otra razón para no asumir equivalencia 1:1 fuera del código 3.
+
+### Variable de control adicional desde 2022: `NATVIOLE`
+`{1, 2, 8}` → 1=Sí, 2=No, 8=No aplica. Indica si la defunción fue de tipo accidental o violenta — útil como segundo filtro de control adicional junto con `TIPO_DEFUN`, aunque no reemplaza la necesidad de filtrar por `TIPO_DEFUN == 3` para identificar específicamente suicidios (solo homicidios y accidentes también tendrían `NATVIOLE = 1`).
+

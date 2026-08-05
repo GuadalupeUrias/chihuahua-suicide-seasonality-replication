@@ -69,6 +69,7 @@ Reportes generados hasta ahora (ver `reports/`):
 9. `09_correccion_bug_sintaxis_notebook.md` — corrección de bug de sintaxis en el notebook de descarga (comillas mal escapadas)
 10. `10_perfilado_columnas_cambio_esquema.md` — perfilado real de columnas por periodo; detección de cambio de esquema (PRESUNTO→TIPO_DEFUN en 2022)
 11. `11_codigos_decodificados_urls_corregidas.md` — códigos reales decodificados (PRESUNTO=Suicidio, EDAD, EDAD_AGRU) y corrección de URLs 2022-2024
+12. `12_tipo_defun_confirmado_armonizacion.md` — TIPO_DEFUN confirmado (2022-2024) y tabla de armonización con PRESUNTO (código 4 cambia de significado)
 
 ## Cómo contribuir datos crudos
 
