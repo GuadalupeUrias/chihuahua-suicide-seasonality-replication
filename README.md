@@ -67,6 +67,7 @@ Reportes generados hasta ahora (ver `reports/`):
 7. `07_urls_confirmadas_gitignore.md` — URLs de descarga confirmadas, .gitignore para datos crudos, instrucciones de git en archivo dedicado
 8. `08_error_permisos_git_push.md` — solución al error de permisos (403) al hacer git push con la cuenta incorrecta
 9. `09_correccion_bug_sintaxis_notebook.md` — corrección de bug de sintaxis en el notebook de descarga (comillas mal escapadas)
+10. `10_perfilado_columnas_cambio_esquema.md` — perfilado real de columnas por periodo; detección de cambio de esquema (PRESUNTO→TIPO_DEFUN en 2022)
 
 ## Cómo contribuir datos crudos
 
