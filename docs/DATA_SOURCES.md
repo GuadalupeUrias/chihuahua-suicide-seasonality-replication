@@ -52,11 +52,28 @@ Si intentas exportar el cubo con muchas variables marcadas y sin "criterios" (fi
 **Portal correcto (microdatos, una fila = una defunción):**
 https://www.inegi.org.mx/programas/edr/ → pestaña **"Microdatos"**
 
+### ⚠️ Estructura real de los archivos (confirmada por el usuario, no es un archivo por año)
+
+INEGI **no entrega un archivo por año** para todo el periodo. La agrupación real es:
+
+| Archivo a descargar | Años que contiene | Uso en este proyecto |
+|---|---|---|
+| Consolidado 2005-2009 | 2005, 2006, 2007, 2008, 2009 | Solo necesitamos 2008-2009 (réplica); 2005-2007 se descargan también pero se descartan en el filtrado |
+| Consolidado 2010-2014 | 2010 a 2014 | Réplica completa |
+| Consolidado 2015-2019 | 2015 a 2019 | Réplica completa (2015-2018) + 2019 ya nos sirve para la **extensión** |
+| Archivo individual 2020 | 2020 | Extensión |
+| Archivo individual 2021 | 2021 | Extensión |
+| Archivo individual 2022 | 2022 | Extensión |
+| Archivo individual 2023 | 2023 | Extensión |
+| Archivo individual 2024 | 2024 | Extensión (año más reciente disponible probablemente) |
+
+Es decir: **8 descargas en total** (3 archivos consolidados + 5 individuales) cubren tanto la réplica (2008-2018) como la extensión (hasta el año más reciente disponible). Cada archivo consolidado trae internamente una columna de año (probablemente "año de ocurrencia" o similar) que usamos para separar los años dentro de cada archivo — no hay que descargarlo varias veces.
+
 ### Pasos exactos
 1. Entra a https://www.inegi.org.mx/programas/edr/
 2. Ve a la pestaña **Microdatos**.
-3. Vas a encontrar un archivo de datos por año (nombrados algo como `DEFUN08`, `DEFUN09`, ... `DEFUN18` — el patrón es `DEFUN` + los 2 últimos dígitos del año). Descarga **cada año de 2008 a 2018** (11 archivos), en formato CSV o DBF.
-4. Descarga también el **"Diccionario de Datos"** (codebook) de cada año — es indispensable, porque el microdato viene con **códigos numéricos**, no texto (ej. sexo = 1/2, entidad = clave de 2 dígitos, causa = código CIE-10), y esos códigos pueden cambiar ligeramente de un año a otro.
+3. Descarga los **8 archivos** de la tabla de arriba (3 consolidados + 5 individuales 2020-2024), en formato CSV o DBF.
+4. Descarga también el **"Diccionario de Datos"** (codebook) de cada archivo — es indispensable, porque el microdato viene con **códigos numéricos**, no texto (ej. sexo = 1/2, entidad = clave de 2 dígitos, causa = código CIE-10), y esos códigos pueden cambiar entre los distintos periodos consolidados.
 5. Sube los archivos (dato + diccionario) tal como los descargues.
 
 📌 **Sobre el tamaño:** estos archivos son bases **nacionales completas** (todas las causas, las 32 entidades), así que pueden pesar bastante (posiblemente decenas de MB por año). Si al subirlos aquí algún archivo resulta demasiado grande:

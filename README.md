@@ -12,9 +12,9 @@ Salud Mental, 44(2), 43-52. https://doi.org/10.17711/SM.0185-3325.2021.008
 
 ## Objetivo del proyecto
 
-1. **Replicar** los resultados del artículo original usando datos públicos de INEGI (mortalidad) y CONAGUA (temperatura).
+1. **Replicar** los resultados del artículo original usando datos públicos de INEGI (mortalidad) y CONAGUA (temperatura), periodo 2008-2018.
 2. **Documentar** el proceso completo de curación de datos (diagnóstico, limpieza, estandarización, validación).
-3. **Extender** el análisis: actualizar la serie a años recientes y/o probar variables adicionales.
+3. **Extender** el análisis más allá de 2018, hasta el año más reciente disponible en INEGI (actualmente hasta 2024). Los datos de mortalidad 2019-2024 se descargan **desde ahora**, junto con los de la réplica, ya que INEGI agrupa varios años en un mismo archivo (ver `docs/DATA_SOURCES.md`) y conviene descargarlos una sola vez.
 
 ## Diseño del estudio original (resumen metodológico)
 
@@ -57,7 +57,13 @@ chihuahua-suicide-seasonality-replication/
 
 🔵 **Etapa 1 — Diagnóstico inicial: EN CURSO**
 
-Ver `reports/` para el detalle de cada etapa completada.
+Reportes generados hasta ahora (ver `reports/`):
+1. `01_diagnostico_fuentes.md` — identificación inicial de las 3 fuentes de datos
+2. `02_fuentes_exactas_articulo.md` — fuentes exactas confirmadas con el texto completo del artículo
+3. `03_mapeo_campos_cubo.md` — renombre del proyecto y mapeo de variables del cubo de INEGI
+4. `04_correccion_fuente_microdatos.md` — corrección: usar portal de microdatos, no el cubo OLAP
+5. `05_notebook_descarga_git.md` — notebook de descarga automatizada e instrucciones de git
+6. `06_estructura_archivos_inegi.md` — corrección de la estructura real de archivos INEGI (consolidados por periodo) y adelanto de años de extensión
 
 ## Cómo contribuir datos crudos
 
